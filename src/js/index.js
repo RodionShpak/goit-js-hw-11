@@ -40,7 +40,6 @@ async function onSearch(evt) {
 
     requireImages.query = searchValue;
     requireImages.resetPage();
-
     const images = await requireImages.getImage();
 
     if (images.hits.length === 0) {
@@ -52,13 +51,9 @@ async function onSearch(evt) {
     Notify.success(`Hooray! We found ${totalHits} images.`);
 
     totalHits -= images.hits.length;
-
     const markup = createMarkup(images.hits);
-
     addToHTML(markup);
-
     toggleLoadMoreBtn(totalHits);
-
     gallery.refresh();
 }
 
@@ -66,9 +61,7 @@ async function onLoadMore() {
     const images = await requireImages.getImage();
 
     const markup = createMarkup(images.hits);
-
     totalHits -= images.hits.length;
-
     addToHTML(markup);
 
     if (totalHits === 0 || totalHits < 0) {
@@ -77,7 +70,6 @@ async function onLoadMore() {
     }
 
     toggleLoadMoreBtn(totalHits);
-
     gallery.refresh();
 }
 
